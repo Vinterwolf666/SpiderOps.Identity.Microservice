@@ -9,7 +9,7 @@ env:
   GOOGLE_PROJECT_ID: ${{ secrets.GOOGLE_PROJECT_ID }}
   GOOGLE_COMPUTE_ZONE: 'us-central1'  # Cambia a la zona de tu GKE
   GOOGLE_CLUSTER_NAME: 'autopilot-cluster-1'  # Nombre de tu clúster de GKE
-  IMAGE_NAME: 'azure_test'  # Nombre de tu aplicación
+  IMAGE_NAME: 'identity_ms'  # Nombre de tu aplicación
   IMAGE_TAG: ${{ github.sha }}  # Usamos el commit hash para etiquetar la imagen
 
 jobs:
