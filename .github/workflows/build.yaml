@@ -60,5 +60,5 @@ jobs:
       # Paso 8: Actualizar la imagen del Deployment -xssssss
       - name: Update Deployment with new image
         run: |
-          kubectl set image deployment/my-app-deployment my-container=us-central1-docker.pkg.dev/$GOOGLE_PROJECT_ID/my-repo/$IMAGE_NAME:$IMAGE_TAG
-          kubectl rollout status deployment/my-app-deployment
+          kubectl set image deployment/identity-ms-app my-container=us-central1-docker.pkg.dev/$GOOGLE_PROJECT_ID/my-repo/$IMAGE_NAME:$IMAGE_TAG
+          kubectl rollout status deployment/identity-ms-app
