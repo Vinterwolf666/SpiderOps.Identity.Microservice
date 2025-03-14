@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "JHgMB/rTh4slpUkEQhgPzQfGKitz3JvAxoA/1hkUhlU=",
+  "Source": "Customer.Identity.Microservice.API",
+  "BasePath": "_content/Customer.Identity.Microservice.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
