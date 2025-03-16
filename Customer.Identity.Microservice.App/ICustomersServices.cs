@@ -13,7 +13,7 @@ namespace Customer.Identity.Microservice.App
 
         List<Customers> AllCustomerByID(int id);
 
-        Task<string> NewCustomer(Customers c);
+        Task<object> NewCustomer(Customers c);
 
         Task<string> DeleteCustomer(int id);
 

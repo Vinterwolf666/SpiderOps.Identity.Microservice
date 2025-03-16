@@ -75,7 +75,7 @@ namespace Customer.Identity.Microservice.API.Controllers
 
         [HttpPost]
         [Route("newCustomer")]
-        public async Task<ActionResult<string>> NewCustomer([FromBody] Customers c)
+        public async Task<object> NewCustomer([FromBody] Customers c)
         {
 
             try

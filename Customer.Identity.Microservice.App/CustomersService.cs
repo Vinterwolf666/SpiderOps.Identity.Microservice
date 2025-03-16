@@ -36,7 +36,7 @@ namespace Customer.Identity.Microservice.App
 
             return result;
         }
-        public Task<string> NewCustomer(Customers c)
+        public Task<object> NewCustomer(Customers c)
         {
             var result = _repository.NewCustomer(c);
 

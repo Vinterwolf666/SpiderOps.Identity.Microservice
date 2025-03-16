@@ -52,13 +52,13 @@ namespace Customer.Identity.Microservice.Infrastructure
 
         }
 
-        public async Task<string> NewCustomer(Customers c)
+        public async Task<object> NewCustomer(Customers c)
         {
 
             var validate_email = _context.CustomersDomain.Where(a => a.EMAIL == c.EMAIL).FirstOrDefault();
 
 
-            if(validate_email == null)
+            if (validate_email == null)
             {
                 c.PASS = BCrypt.Net.BCrypt.EnhancedHashPassword(c.PASS);
 
@@ -66,16 +66,23 @@ namespace Customer.Identity.Microservice.Infrastructure
 
                 await _context.SaveChangesAsync();
 
-                return "Account created successfully";
+                return new
+                {
+
+                    response = "Account created successfully",
+
+                    customer_id = c.ID
+                };
 
             }
             else
             {
-                return "The email is already in use, try another";
+                return new
+                {
+                    response = "The email is already in use, try another"
+                };
+
             }
-
-
-            
         }
 
         public async Task<string> UpdateCustomer(Customers c)
