@@ -72,7 +72,7 @@ namespace Customer.Identity.Microservice.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
+        //
         [HttpPost]
         [Route("newCustomer")]
         public async Task<object> NewCustomer([FromBody] Customers c)
