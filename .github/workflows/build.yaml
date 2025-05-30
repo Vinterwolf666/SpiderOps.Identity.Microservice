@@ -8,7 +8,7 @@ on:
     branches:
       - master
   schedule:
-    - cron: '0 3 * * 1' # Corre cada lunes a las 3 AM UTCss
+    - cron: '0 3 * * 1' # Corre cada lunes a las 3 AM UTC
 
 jobs:
   analyze:
@@ -42,19 +42,35 @@ jobs:
           name: gitleaks-report
           path: gitleaks-report.json
 
-      # --- Análisis de calidad con SonarCloud ---
+      # --- Ejecutar pruebas con cobertura ---
+      - name: Run tests with coverage
+        run: dotnet test --collect:"XPlat Code Coverage"
+
+      # --- Instalar y ejecutar ReportGenerator ---
+      - name: Install reportgenerator tool
+        run: dotnet tool install --global dotnet-reportgenerator-globaltool
+
+      - name: Convert coverage report to SonarCloud format
+        run: |
+          reportgenerator -reports:**/coverage.cobertura.xml \
+                          -targetdir:coverage-report \
+                          -reporttypes:SonarQube
+
+      # --- Cache de SonarCloud ---
       - name: Cache SonarCloud packages
         uses: actions/cache@v3
         with:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
 
+      # --- Análisis con SonarCloud ---
       - name: Run SonarCloud analysis
         uses: SonarSource/sonarqube-scan-action@v5
         env:
-          SONAR_TOKEN: 22275d66ec9a13c7c5810f1fa423675358c9a4ad
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
             -Dsonar.projectKey=quality-ms_integration-ms
             -Dsonar.organization=quality-ms
             -Dsonar.host.url=https://sonarcloud.io
+            -Dsonar.cs.opencover.reportsPaths=coverage-report/SonarQube.xml
