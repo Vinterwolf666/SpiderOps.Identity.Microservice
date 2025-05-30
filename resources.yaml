@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: identity-ms-app
 spec:
-  replicas: 1  # Número de réplicass
+  replicas: 1  # Número de réplicasss
   selector:
     matchLabels:
       app: identity-ms-app
