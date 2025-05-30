@@ -3,10 +3,10 @@ name: Code Analysis (Security, Dependencies, SonarCloud)
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
   schedule:
     - cron: '0 3 * * 1' # Corre cada lunes a las 3 AM UTCss
 
